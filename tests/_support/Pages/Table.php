@@ -47,6 +47,18 @@ class Table extends BasePage
     }
 
     /**
+     * Проверяет, что в таблице данное количество записей
+     * @param Todo $model
+     * @param int $count
+     */
+    public function seeNumberOfTodos(Todo $model, int $count): void
+    {
+        $I = $this->user;
+        $row = $this->getRow($model);
+        $I->seeNumberOfElements($row, $count);
+    }
+
+    /**
      * Возвращает локатор строки в таблице со значениями полей todo
      * @param BaseModel $model
      * @return string

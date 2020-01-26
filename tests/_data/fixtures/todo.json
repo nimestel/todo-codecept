@@ -1,6 +1,9 @@
 {
   "addNamePriority": {
-    "name": "fulladd",
+    "name": "todo with full fields 123",
     "priority": "important"
+  },
+  "addSameName": {
+    "name": "2 todo, with same name!"
   }
 }
