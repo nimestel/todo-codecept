@@ -16,6 +16,14 @@ class AddTodoCest
         $MainPage->open();
     }
 
+    /**
+     * Открыть главную страницу
+     * Нажать на кнопку добавления todo
+     * Заполнить поля title и priority
+     * Нажать на кнопку сохранения
+     *
+     * В таблице отображается сохраненная запись
+     */
     public function testAddWithNameAndPriority(
         AcceptanceTester $I,
         TodoCard $TodoCard,
@@ -28,6 +36,15 @@ class AddTodoCest
         $Table->seeTodo($todo);
     }
 
+    /**
+     * Повторить добавление два раза:
+     *  Открыть главную страницу
+     *  Нажать на кнопку добавления todo
+     *  Заполнить поле title
+     *  Нажать на кнопку сохранения
+     *
+     * В таблице отображаются обе записи с одинаковыми именами и без приоритета
+     */
     public function testAddWithSameNameWithoutPriority(
         AcceptanceTester $I,
         TodoCard $TodoCard,
