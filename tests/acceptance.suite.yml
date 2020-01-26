@@ -13,7 +13,7 @@ modules:
             browser: chrome
             restart: false
             clear_cookies: false
-            wait: 10
+            wait: 5
             capabilities:
                 unexpectedAlertBehaviour: "accept"
         - \Helper\Acceptance
