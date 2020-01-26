@@ -17,8 +17,12 @@ class BaseModel
     /** Данные из файла */
     protected $data;
 
-    public function __construct($jsonBlock)
+    public function __construct($jsonBlock = null)
     {
+        if (!$jsonBlock){
+            return;
+        }
+
         $this->set($jsonBlock);
     }
 
@@ -58,4 +62,12 @@ class BaseModel
             }
         }
     }
+
+    public function generateRandomString($length = 10)
+    {
+        $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ';
+        return substr(str_shuffle(str_repeat($chars,
+            ceil($length / strlen($chars)))), 1, $length);
+    }
+
 }
