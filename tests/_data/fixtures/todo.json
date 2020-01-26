@@ -5,5 +5,15 @@
   },
   "addSameName": {
     "name": "2 todo, with same name!"
+  },
+  "editNamePriority": {
+    "name": "123 456",
+    "priority": "secondary"
+  },
+  "editPriority": {
+    "priority": "meh"
+  },
+  "editName": {
+    "name": "!@#$%^&*()-=`"
   }
 }
