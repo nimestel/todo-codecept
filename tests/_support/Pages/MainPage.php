@@ -55,13 +55,13 @@ class MainPage extends BasePage
 
     /**
      * Открыть окно удаления всех записей
-     * @return DeletingWindow
+     * @return DeletePage
      */
-    public function openDeleteAllWindow(): DeletingWindow
+    public function openDeleteAllWindow(): DeletePage
     {
         $I = $this->user;
         $I->click(static::BTN_DELETE_ALL);
 
-        return new DeletingWindow($I);
+        return new DeletePage($I);
     }
 }

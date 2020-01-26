@@ -1,8 +1,9 @@
 <?php
 
 use Models\Todo;
+use Pages\DeletePage;
 use Pages\MainPage;
-use Pages\Table;
+use Pages\TablePage;
 use Pages\TodoCard;
 
 /**
@@ -27,13 +28,13 @@ class AddTodoCest
     public function testAddWithNameAndPriority(
         AcceptanceTester $I,
         TodoCard $TodoCard,
-        Table $Table): void
+        TablePage $TablePage): void
     {
         $I->wantTo('Проверить добавление todo с именем и приоритетом');
 
         $todo = new Todo(Todo::ADD_WITH_NAME_AND_PRIORITY);
         $TodoCard->add($todo);
-        $Table->seeTodo($todo);
+        $TablePage->seeTodo($todo);
     }
 
     /**
@@ -48,7 +49,7 @@ class AddTodoCest
     public function testAddWithSameNameWithoutPriority(
         AcceptanceTester $I,
         TodoCard $TodoCard,
-        Table $Table): void
+        TablePage $TablePage): void
     {
         $I->wantTo('Проверить добавление todo с одинаковым именем и без приоритета');
 
@@ -57,6 +58,12 @@ class AddTodoCest
         $TodoCard->add($todo);
 
         $I->expect('Успешно создалось две записи с одинаковыми названиями');
-        $Table->seeNumberOfTodos($todo, 2);
+        $TablePage->seeNumberOfTodos($todo, 2);
+    }
+
+    public function afterSuite(AcceptanceTester $I, DeletePage $DeletePage)
+    {
+        $I->wantTo('Очистить записи');
+        $DeletePage->deleteAll();
     }
 }

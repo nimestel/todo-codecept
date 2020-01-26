@@ -34,6 +34,15 @@ class TodoCard extends MainPage
         $this->save();
     }
 
+    public function edit(Todo $modelBefore, Todo $modelAfter): void
+    {
+        $I = $this->user;
+        $Table = new TablePage($I);
+        $Table->openEditTodoWindow($modelBefore);
+        $this->fillFields($modelAfter);
+        $this->save();
+    }
+
     public function save(): void
     {
         $I = $this->user;

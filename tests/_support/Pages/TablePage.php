@@ -17,7 +17,7 @@ use Models\Todo;
  * Class Table
  * @package Pages
  */
-class Table extends BasePage
+class TablePage extends BasePage
 {
     public const TABLE = "//table[contains(@class, 'has-mobile-cards')]";
     public const FLD_ID = "//td[@data-label='ID']";
@@ -25,6 +25,8 @@ class Table extends BasePage
     public const FLD_PRIORITY = "//td[@data-label='Priority']";
     public const FLD_EDIT = "//td[@data-label='Edit']";
     public const FLD_DELETE = "//td[@data-label='Delete']";
+    public const BTN_EDIT = self::FLD_EDIT . "//button";
+    public const BTN_DELETE = self::FLD_DELETE . "//button";
 
     /**
      * Проверяет, что такая запись есть в таблице
@@ -58,6 +60,36 @@ class Table extends BasePage
         $I->seeNumberOfElements($row, $count);
     }
 
+    /**
+     * Открыть окно редактирования записи
+     * @param Todo $model
+     * @return TodoCard
+     */
+    public function openEditTodoWindow(Todo $model): TodoCard
+    {
+        $I = $this->user;
+
+        $row = $this->getRow($model);
+        $I->click($row . static::BTN_EDIT);
+
+        return new TodoCard($I);
+    }
+
+    /**
+     * Открыть окно удаления записи
+     * @param Todo $model
+     * @return TodoCard
+     */
+    public function openDeleteTodoWindow(Todo $model): TodoCard
+    {
+        $I = $this->user;
+
+        $row = $this->getRow($model);
+        $I->click($row . static::BTN_DELETE);
+
+        return new TodoCard($I);
+    }
+    
     /**
      * Возвращает локатор строки в таблице со значениями полей todo
      * @param BaseModel $model
