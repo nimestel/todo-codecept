@@ -31,7 +31,28 @@ class TodoCard extends MainPage
         $MainPage = new MainPage($I);
         $MainPage->openAddTodoWindow();
         $this->fillFields($model);
+        $this->save();
+    }
+
+    public function save(): void
+    {
+        $I = $this->user;
         $I->click(static::BTN_SAVE);
+        $I->waitForElementNotVisible(static::CARD);
+    }
+
+    public function close(): void
+    {
+        $I = $this->user;
+        $I->click(static::BTN_CLOSE);
+        $I->waitForElementNotVisible(static::CARD);
+    }
+
+    public function cancel(): void
+    {
+        $I = $this->user;
+        $I->click(static::BTN_CLOSE_LARGE);
+        $I->waitForElementNotVisible(static::CARD);
     }
 
     public function fillFields(Todo $model): void
