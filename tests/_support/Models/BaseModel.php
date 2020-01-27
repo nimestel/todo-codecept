@@ -63,6 +63,11 @@ class BaseModel
         }
     }
 
+    /**
+     * Генерирует строку из сочетания перечисленных символов указанной длины
+     * @param int $length
+     * @return bool|string
+     */
     public function generateRandomString($length = 10)
     {
         $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ';

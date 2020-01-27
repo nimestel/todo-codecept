@@ -13,15 +13,15 @@ class Todo extends BaseModel
     /** Данные для добавления */
     public const ADD_WITH_NAME_AND_PRIORITY = 'addNamePriority';
     public const ADD_WITH_SAME_NAME_NO_PRIORITY = 'addSameName';
+    public const ADD_FOR_EDIT = 'prepareEdit';
     /** Данные для изменения */
-    public const EDIT_NAME_AND_PRIORITY = 'editNamePriority';
+    public const EDIT_NAME_AND_PRIORITY = 'editNameAndPriority';
     public const EDIT_PRIORITY = 'editPriority';
-    public const EDIT_NAME = 'editName';
+    public const EDIT_NAME = 'editNameInFullTodo';
 
     protected $file = 'todo.json';
 
-    /** Номер */
-    public $id;
+    /** Основные поля */
     /** Название */
     public $name;
     /** Приоритет */
@@ -34,24 +34,6 @@ class Todo extends BaseModel
         }
 
         parent::__construct($jsonBlock);
-    }
-
-    /**
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     * @return Todo
-     */
-    public function setId(int $id): Todo
-    {
-        $this->id = $id;
-        return $this;
     }
 
     /**
@@ -73,9 +55,9 @@ class Todo extends BaseModel
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getPriority()
+    public function getPriority(): string
     {
         return $this->priority;
     }

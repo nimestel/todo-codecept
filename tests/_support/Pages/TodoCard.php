@@ -67,7 +67,18 @@ class TodoCard extends MainPage
     public function fillFields(Todo $model): void
     {
         $I = $this->user;
-        $I->fillField(static::FLD_TITLE, $model->getName());
-        $I->selectOption(static::FLD_PRIORITY, $model->getPriority());
+
+        foreach ($model as $field => $value) {
+            if ($value === null) {
+                continue;
+            }
+            switch ($field) {
+                case "name":
+                    $I->fillField(static::FLD_TITLE, $value);
+                    break;
+                case "priority":
+                    $I->selectOption(static::FLD_PRIORITY, $value);
+            }
+        }
     }
 }

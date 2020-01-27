@@ -20,7 +20,6 @@ use Models\Todo;
 class TablePage extends BasePage
 {
     public const TABLE = "//table[contains(@class, 'has-mobile-cards')]";
-    public const FLD_ID = "//td[@data-label='ID']";
     public const FLD_NAME = "//td[@data-label='Todo']";
     public const FLD_PRIORITY = "//td[@data-label='Priority']";
     public const FLD_EDIT = "//td[@data-label='Edit']";
@@ -89,7 +88,7 @@ class TablePage extends BasePage
 
         return new TodoCard($I);
     }
-    
+
     /**
      * Возвращает локатор строки в таблице со значениями полей todo
      * @param BaseModel $model
@@ -131,13 +130,11 @@ class TablePage extends BasePage
         // иначе для каждого свойства модели смотрим, не пустое ли оно,
         // и если нет - предполагаем, что одноименное поле таблицы имеет то же значение
         foreach ($model as $field => $value) {
-            if (!empty($value)) {
-                $fieldName = 'FLD_' . strtoupper($field);
-                $rowSelectors[] = $this->fieldContains(
-                    constant('static::' . $fieldName),
-                    $value
-                );
-            }
+            $fieldName = 'FLD_' . strtoupper($field);
+            $rowSelectors[] = $this->fieldContains(
+                constant('static::' . $fieldName),
+                $value
+            );
         }
 
         return $rowSelectors;
@@ -146,10 +143,10 @@ class TablePage extends BasePage
     /**
      * Утверждает, что поле таблицы имеет определенное значение
      * @param string $field
-     * @param string $value
+     * @param $value
      * @return string
      */
-    protected function fieldContains(string $field, string $value): string
+    protected function fieldContains(string $field, $value): string
     {
         return $field . "[normalize-space()='" . trim($value) . "']";
     }
