@@ -33,11 +33,10 @@ class EditTodoCest
     ): void {
         $I->wantTo('Проверить изменение названия и приоритета todo с именем и приоритетом');
 
-        $todoAdd = new Todo(Todo::ADD_WITH_NAME_AND_PRIORITY);
+        $todoAdd = new Todo(Todo::ADD_FOR_EDIT);
         $todoEdit = new Todo(Todo::EDIT_NAME_AND_PRIORITY);
 
         $TodoCard->add($todoAdd);
-
         $TodoCard->edit($todoAdd, $todoEdit);
         $TablePage->seeTodo($todoEdit);
     }
@@ -52,23 +51,22 @@ class EditTodoCest
      *
      * В таблице отображается измененная запись с прежним приоритетом
      */
-    public function testEditNameTodoWithPriority(
+    public function testEditNameInFullTodo(
         AcceptanceTester $I,
         TodoCard $TodoCard,
         TablePage $TablePage
     ): void {
         $I->wantTo('Проверить изменение названия todo с именем и приоритетом');
 
-        $todoAdd = new Todo(Todo::ADD_WITH_NAME_AND_PRIORITY);
-        $priorityBefore = $todoAdd->getPriority();
+        $todoAdd = new Todo(Todo::ADD_FOR_EDIT);
+        $todoEdit = new Todo(Todo::EDIT_NAME);
 
         $I->comment('После изменения названия у todo останется прежний приоритет');
-        $todoEdit = new Todo(Todo::EDIT_NAME);
+        $priorityBefore = $todoAdd->getPriority();
         $todoAfterEdit = new Todo(Todo::EDIT_NAME);
         $todoAfterEdit->setPriority($priorityBefore);
 
         $TodoCard->add($todoAdd);
-
         $TodoCard->edit($todoAdd, $todoEdit);
         $TablePage->seeTodo($todoAfterEdit);
     }
@@ -84,21 +82,19 @@ class EditTodoCest
      * В таблице отображается измененная запись
      * В таблице не отображается прежняя запись
      */
-    public function testEditNameTodoNoPriority(
+    public function testEditNameInTodoWithoutPriority(
         AcceptanceTester $I,
         TodoCard $TodoCard,
         TablePage $TablePage
     ): void {
-        $I->wantTo('Проверить изменение названия todo с приоритетом');
+        $I->wantTo('Проверить изменение названия todo без приоритета');
 
-        $I->amGoingTo('Создать todo со случайным именем');
         $todoAdd = new Todo();
-        $todoAdd->setRandomName();
-        $todoEdit = new Todo(Todo::EDIT_NAME);
+        $todoEdit = new Todo();
 
         $TodoCard->add($todoAdd);
-
         $TodoCard->edit($todoAdd, $todoEdit);
+
         $TablePage->seeTodo($todoEdit);
         $TablePage->dontSeeTodo($todoAdd);
     }
@@ -113,24 +109,55 @@ class EditTodoCest
      *
      * В таблице отображается измененная запись
      */
-    public function testEditPriorityTodoWithNameAndPriority(
+    public function testEditPriorityInFullTodo(
         AcceptanceTester $I,
         TodoCard $TodoCard,
         TablePage $TablePage
     ): void {
         $I->wantTo('Проверить изменение приоритета todo с именем и приоритетом');
 
-        $todoAdd = new Todo(Todo::ADD_WITH_NAME_AND_PRIORITY);
-        $nameBefore = $todoAdd->getName();
+        $todoAdd = new Todo(Todo::ADD_FOR_EDIT);
+        $todoEdit = new Todo(Todo::EDIT_PRIORITY);
 
         $I->comment('После изменения приоритета у todo останется прежнее название');
-        $todoEdit = new Todo(Todo::EDIT_PRIORITY);
+        $nameBefore = $todoAdd->getName();
         $todoAfterEdit = new Todo(Todo::EDIT_PRIORITY);
         $todoAfterEdit->setName($nameBefore);
 
         $TodoCard->add($todoAdd);
-
         $TodoCard->edit($todoAdd, $todoEdit);
+
+        $TablePage->seeTodo($todoAfterEdit);
+    }
+
+    /**
+     * Подготовка: создать запись без приоритета
+     *
+     * Открыть главную страницу
+     * Нажать на кнопку редактирования записи в таблице
+     * Заполнить поле priority
+     * Нажать на кнопку сохранения
+     *
+     * В таблице отображается измененная запись
+     */
+    public function testEditPriorityInTodoWithoutPriority(
+        AcceptanceTester $I,
+        TodoCard $TodoCard,
+        TablePage $TablePage
+    ): void {
+        $I->wantTo('Проверить изменение приоритета todo без приоритета');
+
+        $todoAdd = new Todo();
+        $todoEdit = new Todo(Todo::EDIT_PRIORITY);
+
+        $I->comment('После изменения приоритета у todo останется прежнее название');
+        $nameBefore = $todoAdd->getName();
+        $todoAfterEdit = new Todo(Todo::EDIT_PRIORITY);
+        $todoAfterEdit->setName($nameBefore);
+
+        $TodoCard->add($todoAdd);
+        $TodoCard->edit($todoAdd, $todoEdit);
+
         $TablePage->seeTodo($todoAfterEdit);
     }
 

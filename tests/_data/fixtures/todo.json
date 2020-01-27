@@ -6,14 +6,18 @@
   "addSameName": {
     "name": "2 todo, with same name!"
   },
-  "editNamePriority": {
-    "name": "123 456",
+  "prepareEdit": {
+    "name": "TODO_FOR_EDIT",
     "priority": "secondary"
+  },
+  "editNameAndPriority": {
+    "name": "123 456",
+    "priority": "important"
+  },
+  "editNameInFullTodo": {
+    "name": "!@#$%^&*()-=`"
   },
   "editPriority": {
     "priority": "meh"
-  },
-  "editName": {
-    "name": "!@#$%^&*()-=`"
   }
 }
