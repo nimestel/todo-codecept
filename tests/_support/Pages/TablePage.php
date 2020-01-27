@@ -149,6 +149,6 @@ class TablePage extends BasePage
      */
     protected function fieldContains(string $field, $value): string
     {
-        return $field . "[normalize-space()='" . trim($value) . "']";
+        return $field . "[normalize-space()='" . $value . "']";
     }
 }

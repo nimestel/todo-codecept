@@ -1,10 +1,10 @@
 {
   "addNamePriority": {
-    "name": "todo with full fields 123",
+    "name": "Todo with full fields 123",
     "priority": "important"
   },
   "addSameName": {
-    "name": "2 todo, with same name!"
+    "name": "Целых 2 задачи, с одинаковым названием!"
   },
   "prepareEdit": {
     "name": "TODO_FOR_EDIT",

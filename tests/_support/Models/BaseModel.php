@@ -70,9 +70,9 @@ class BaseModel
      */
     public function generateRandomString($length = 10)
     {
-        $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!,.?(){}[]:;\/-_+=`~     ';
-        return substr(str_shuffle(str_repeat($chars,
-            ceil($length / strlen($chars)))), 1, $length);
+        $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!,.?(){}[]:;\/-_+=`~  ';
+        return trim(substr(str_shuffle(str_repeat($chars,
+            ceil($length / strlen($chars)))), 1, $length));
     }
 
 }
