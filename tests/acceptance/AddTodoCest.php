@@ -28,8 +28,8 @@ class AddTodoCest
     public function testAddWithNameAndPriority(
         AcceptanceTester $I,
         TodoCard $TodoCard,
-        TablePage $TablePage): void
-    {
+        TablePage $TablePage
+    ): void {
         $I->wantTo('Проверить добавление todo с именем и приоритетом');
 
         $todo = new Todo(Todo::ADD_WITH_NAME_AND_PRIORITY);
@@ -49,8 +49,8 @@ class AddTodoCest
     public function testAddWithSameNameWithoutPriority(
         AcceptanceTester $I,
         TodoCard $TodoCard,
-        TablePage $TablePage): void
-    {
+        TablePage $TablePage
+    ): void {
         $I->wantTo('Проверить добавление todo с одинаковым именем и без приоритета');
 
         $todo = new Todo(Todo::ADD_WITH_SAME_NAME_NO_PRIORITY);
@@ -59,6 +59,25 @@ class AddTodoCest
 
         $I->expect('Успешно создалось две записи с одинаковыми названиями');
         $TablePage->seeNumberOfTodos($todo, 2);
+    }
+
+    public function testAddWithRandomName(
+        AcceptanceTester $I,
+        TodoCard $TodoCard,
+        TablePage $TablePage
+    ): void {
+        $I->wantTo('Проверить добавление todo со случайными именами');
+
+        $todos = [];
+        for ($i = 0; $i < 10; $i++) {
+            $todos[] = new Todo();
+        }
+
+        $TodoCard->addAFew($todos);
+
+        foreach ($todos as $todo) {
+            $TablePage->seeTodo($todo);
+        }
     }
 
     public function afterSuite(AcceptanceTester $I, DeletePage $DeletePage)

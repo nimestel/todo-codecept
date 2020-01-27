@@ -48,7 +48,7 @@ class MainPage extends BasePage
     public function openAddTodoWindow(): TodoCard
     {
         $I = $this->user;
-        $I->click(static::BTN_ADD_TODO);
+        $I->clickTo(static::BTN_ADD_TODO);
 
         return new TodoCard($I);
     }
@@ -60,7 +60,7 @@ class MainPage extends BasePage
     public function openDeleteAllWindow(): DeletePage
     {
         $I = $this->user;
-        $I->click(static::BTN_DELETE_ALL);
+        $I->clickTo(static::BTN_DELETE_ALL);
 
         return new DeletePage($I);
     }

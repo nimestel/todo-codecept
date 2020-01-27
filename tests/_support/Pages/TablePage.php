@@ -34,7 +34,7 @@ class TablePage extends BasePage
     public function seeTodo(Todo $model): void
     {
         $I = $this->user;
-        $I->seeElement($this->getRow($model));
+        $I->seeTo($this->getRow($model));
     }
 
     /**
@@ -55,6 +55,7 @@ class TablePage extends BasePage
     public function seeNumberOfTodos(Todo $model, int $count): void
     {
         $I = $this->user;
+
         $row = $this->getRow($model);
         $I->seeNumberOfElements($row, $count);
     }
@@ -69,7 +70,7 @@ class TablePage extends BasePage
         $I = $this->user;
 
         $row = $this->getRow($model);
-        $I->click($row . static::BTN_EDIT);
+        $I->clickTo($row . static::BTN_EDIT);
 
         return new TodoCard($I);
     }
@@ -84,7 +85,7 @@ class TablePage extends BasePage
         $I = $this->user;
 
         $row = $this->getRow($model);
-        $I->click($row . static::BTN_DELETE);
+        $I->clickTo($row . static::BTN_DELETE);
 
         return new TodoCard($I);
     }
