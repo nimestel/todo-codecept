@@ -20,7 +20,7 @@ class DeletePage extends BasePage
 {
     public const WINDOW = '.modal-card ';
     public const BTN_DELETE = self::WINDOW . 'button.is-danger';
-    public const BTN_CANCEL = self::WINDOW . 'button.is-danger';
+    public const BTN_CANCEL = self::WINDOW . 'button:not(.is-danger)';
 
     public function deleteAll(): void
     {
@@ -38,14 +38,14 @@ class DeletePage extends BasePage
         $this->accept();
     }
 
-    protected function accept(): void
+    public function accept(): void
     {
         $I = $this->user;
         $I->click(static::BTN_DELETE);
         $I->waitForElementNotVisible(static::WINDOW);
     }
 
-    protected function cancel(): void
+    public function cancel(): void
     {
         $I = $this->user;
         $I->click(static::BTN_CANCEL);

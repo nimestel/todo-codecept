@@ -68,13 +68,6 @@ class TodoCard extends MainPage
         $I->waitForElementNotVisible(static::CARD);
     }
 
-    public function cancel(): void
-    {
-        $I = $this->user;
-        $I->click(static::BTN_CLOSE_LARGE);
-        $I->waitForElementNotVisible(static::CARD);
-    }
-
     public function fillFields(Todo $model): void
     {
         $I = $this->user;
