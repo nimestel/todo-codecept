@@ -20,7 +20,23 @@ class AcceptanceTester extends \Codeception\Actor
 {
     use _generated\AcceptanceTesterActions;
 
-   /**
-    * Define custom actions here
-    */
+    /** Scroll to element and click
+     * @param string $locator
+     */
+    public function clickTo(string $locator): void
+    {
+        $I = $this;
+        $I->scrollTo($locator);
+        $I->click($locator);
+    }
+
+    /** Scroll to element and check it is visible
+     * @param string $locator
+     */
+    public function seeTo(string $locator): void
+    {
+        $I = $this;
+        $I->scrollTo($locator);
+        $I->seeElement($locator);
+    }
 }
