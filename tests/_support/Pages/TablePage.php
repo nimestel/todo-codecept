@@ -91,17 +91,49 @@ class TablePage extends BasePage
     }
 
     /**
+     * Проверяет, что запись в таблице находится в указанной строке
+     * @param Todo $model
+     * @param int $num
+     */
+    public function seeRowNumberIs(Todo $model, int $num): void
+    {
+        $I = $this->user;
+
+        $row = $this->getRow($model, $num);
+        $I->seeTo($row);
+    }
+
+    /**
      * Возвращает локатор строки в таблице со значениями полей todo
+     * В случае указания номера строки, добавляет его к локатору
      * @param BaseModel $model
+     * @param null $num
      * @return string
      */
-    public function getRow(BaseModel $model): string
+    public function getRow(BaseModel $model, $num = null): string
     {
         return static::TABLE
-            . '//tr'
+            . $this->getTr($num)
             . '[.'
             . $this->glueSelectors($model)
             . ']';
+    }
+
+    /**
+     * Возвращает локатор элемента строки
+     * В случае указания номер строки - добавляет его в локатор
+     * @param int $num
+     * @return string
+     */
+    protected function getTr(int $num = null): string
+    {
+        $tr = '//tr';
+
+        if($num){
+            return $tr . '[' . $num . ']';
+        }
+
+        return $tr;
     }
 
     /**
@@ -150,5 +182,28 @@ class TablePage extends BasePage
     protected function fieldContains(string $field, $value): string
     {
         return $field . "[normalize-space()='" . $value . "']";
+    }
+
+    /**
+     * Проверяет, что в таблице правильно отображаются заголовки
+     */
+    public function checkHeader(): void
+    {
+        $header = static::TABLE . "//thead//tr";
+        $titles = [
+            'ID',
+            'Todo',
+            'Priority',
+            'Edit',
+            'Delete'
+        ];
+
+        foreach ($titles as $title){
+
+            $I = $this->user;
+
+            $title = $header . "//th[normalize-space()='" . $title . "']";
+            $I->seeTo($title);
+        }
     }
 }

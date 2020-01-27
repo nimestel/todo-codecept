@@ -6,7 +6,7 @@
   "addSameName": {
     "name": "Целых 2 задачи, с одинаковым названием!"
   },
-  "prepareEdit": {
+  "addForEdit": {
     "name": "TODO_FOR_EDIT",
     "priority": "secondary"
   },
@@ -19,5 +19,20 @@
   },
   "editPriority": {
     "priority": "meh"
+  },
+  "addForSort1":{
+    "name": "11",
+    "priority": "important"
+  },
+  "addForSort2":{
+    "name": "1a",
+    "priority": "secondary"
+  },
+  "addForSort3":{
+    "name": "a1",
+    "priority": "meh"
+  },
+  "addForSort4":{
+    "name": "aa"
   }
 }

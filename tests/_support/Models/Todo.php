@@ -10,14 +10,19 @@ namespace Models;
  */
 class Todo extends BaseModel
 {
-    /** Данные для добавления */
+    /** Данные для тестов на добавление */
     public const ADD_WITH_NAME_AND_PRIORITY = 'addNamePriority';
     public const ADD_WITH_SAME_NAME_NO_PRIORITY = 'addSameName';
-    public const ADD_FOR_EDIT = 'prepareEdit';
-    /** Данные для изменения */
+    /** Данные для тестов на изменение */
+    public const ADD_FOR_EDIT = 'addForEdit';
     public const EDIT_NAME_AND_PRIORITY = 'editNameAndPriority';
     public const EDIT_PRIORITY = 'editPriority';
     public const EDIT_NAME = 'editNameInFullTodo';
+    /** Данные для тестов на сортировку */
+    public const ADD_FOR_SORT1 = 'addForSort1';
+    public const ADD_FOR_SORT2 = 'addForSort2';
+    public const ADD_FOR_SORT3 = 'addForSort3';
+    public const ADD_FOR_SORT4 = 'addForSort4';
 
     protected $file = 'todo.json';
 
