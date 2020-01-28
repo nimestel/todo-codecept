@@ -15,10 +15,15 @@ use Pages\TodoCard;
 /**
  * Проверяет сортировку по основным полям в таблице
  */
-class SortByFilterCest
+class SortByFilterDesktopCest
 {
     /** Массив записей для сортировки */
     public $todos = [];
+
+    public function _before(MainPage $MainPage): void
+    {
+        $MainPage->open();
+    }
 
     public function beforeSuite(
         AcceptanceTester $I,
@@ -54,7 +59,7 @@ class SortByFilterCest
         $I->wantTo('Проверить сортировку todo по возрастанию имени');
 
         $TablePage->checkHeader();
-        $TablePage->sortByName();
+        $TablePage->sortByNameDesktop();
 
         $I->expect('1) цифры по возрастанию');
         $TablePage->seeRowNumberIs($this->todos[0], 1);
@@ -70,7 +75,7 @@ class SortByFilterCest
     /**
      * Открыть главную страницу
      * Проверить, что заголовок таблицы отображается корректно
-     * Нажать на заголовок Todo
+     * Два раза нажать на заголовок Todo
      *
      * Записи в таблице отображаются по убыванию имени
      *
@@ -83,7 +88,8 @@ class SortByFilterCest
         $I->wantTo('Проверить сортировку todo по убыванию имени');
 
         $TablePage->checkHeader();
-        $TablePage->sortByName();
+        $TablePage->sortByNameDesktop();
+        $TablePage->sortByNameDesktop();
 
         $I->expect('1) буквы по убыванию');
         $TablePage->seeRowNumberIs($this->todos[3], 1);
@@ -98,7 +104,7 @@ class SortByFilterCest
     /**
      * Открыть главную страницу
      * Проверить, что заголовок таблицы отображается корректно
-     * Нажать на заголовок Priority
+     * Дважды нажать на заголовок Priority
      *
      * Записи в таблице отображаются по возрастанию приоритета
      *
@@ -111,7 +117,8 @@ class SortByFilterCest
         $I->wantTo('Проверить сортировку todo по возрастанию приоритета');
 
         $TablePage->checkHeader();
-        $TablePage->sortByPriority();
+        $TablePage->sortByPriorityDesktop();
+        $TablePage->sortByPriorityDesktop();
 
         $I->expect('1) meh');
         $TablePage->seeRowNumberIs($this->todos[0], 1);
@@ -139,7 +146,7 @@ class SortByFilterCest
         $I->wantTo('Проверить сортировку todo по убыванию приоритета');
 
         $TablePage->checkHeader();
-        $TablePage->sortByPriority();
+        $TablePage->sortByPriorityDesktop();
 
         $I->expect('1) important');
         $TablePage->seeRowNumberIs($this->todos[0], 1);

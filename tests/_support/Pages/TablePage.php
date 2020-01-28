@@ -214,13 +214,39 @@ class TablePage extends BasePage
         }
     }
 
-    public function sortByName(): void
+    public function sortByNameDesktop(): void
     {
         $this->user->clickTo(static::HEADER_NAME);
     }
 
-    public function sortByPriority(): void
+    public function sortByPriorityDesktop(): void
     {
         $this->user->clickTo(static::HEADER_PRIORITY);
+    }
+
+    public function sortByNameMobile(): void
+    {
+        $this->user->selectOption(static::SELECT_FILTER, 'Todo');
+    }
+
+    public function sortByPriorityMobile(): void
+    {
+        $this->user->selectOption(static::SELECT_FILTER, 'Priority');
+    }
+
+    public function sortByAscMobile(): void
+    {
+        $this->user->clickTo(
+            static::BTN_ASC_DESC
+            . "[contains(@class, 'is-desc')]"
+        );
+    }
+
+    public function sortByDescMobile(): void
+    {
+        $this->user->clickTo(
+            static::BTN_ASC_DESC
+            . "[not(contains(@class, 'is-desc'))]"
+        );
     }
 }
