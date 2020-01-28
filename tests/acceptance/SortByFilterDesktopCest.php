@@ -14,6 +14,8 @@ use Pages\TodoCard;
 
 /**
  * Проверяет сортировку по основным полям в таблице
+ *
+ * @group desktop
  */
 class SortByFilterDesktopCest
 {
@@ -59,7 +61,7 @@ class SortByFilterDesktopCest
         $I->wantTo('Проверить сортировку todo по возрастанию имени');
 
         $TablePage->checkHeader();
-        $TablePage->sortByNameDesktop();
+        $TablePage->sortByName();
 
         $I->expect('1) цифры по возрастанию');
         $TablePage->seeRowNumberIs($this->todos[0], 1);
@@ -88,8 +90,8 @@ class SortByFilterDesktopCest
         $I->wantTo('Проверить сортировку todo по убыванию имени');
 
         $TablePage->checkHeader();
-        $TablePage->sortByNameDesktop();
-        $TablePage->sortByNameDesktop();
+        $TablePage->sortByName();
+        $TablePage->sortByName();
 
         $I->expect('1) буквы по убыванию');
         $TablePage->seeRowNumberIs($this->todos[3], 1);
@@ -117,8 +119,8 @@ class SortByFilterDesktopCest
         $I->wantTo('Проверить сортировку todo по возрастанию приоритета');
 
         $TablePage->checkHeader();
-        $TablePage->sortByPriorityDesktop();
-        $TablePage->sortByPriorityDesktop();
+        $TablePage->sortByPriority();
+        $TablePage->sortByPriority();
 
         $I->expect('1) meh');
         $TablePage->seeRowNumberIs($this->todos[0], 1);
@@ -146,7 +148,7 @@ class SortByFilterDesktopCest
         $I->wantTo('Проверить сортировку todo по убыванию приоритета');
 
         $TablePage->checkHeader();
-        $TablePage->sortByPriorityDesktop();
+        $TablePage->sortByPriority();
 
         $I->expect('1) important');
         $TablePage->seeRowNumberIs($this->todos[0], 1);

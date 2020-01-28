@@ -8,6 +8,9 @@ use Pages\TodoCard;
 
 /**
  * Проверяет удаление todo
+ *
+ * @group mobile
+ * @group desktop
  */
 class DeleteTodoCest
 {

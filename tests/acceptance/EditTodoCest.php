@@ -8,6 +8,9 @@ use Pages\TodoCard;
 
 /**
  * Проверяет редактирование todo
+ *
+ * @group desktop
+ * @group mobile
  */
 class EditTodoCest
 {

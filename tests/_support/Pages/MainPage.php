@@ -42,6 +42,18 @@ class MainPage extends BasePage
     }
 
     /**
+     * Проверить видимость ключевых элементов в мобильной версии
+     */
+    public function checkElementsMobile(): void
+    {
+        $I = $this->user;
+        $this->checkElements();
+        $I->seeElement(TablePage::SELECT_FILTER);
+        $I->seeElement(TablePage::BTN_ASC_DESC);
+        $I->seeElement(TablePage::TABLE);
+    }
+
+    /**
      * Открыть окно добавления записи
      * @return TodoCard
      */

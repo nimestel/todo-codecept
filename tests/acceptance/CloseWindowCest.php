@@ -8,6 +8,9 @@ use Pages\TodoCard;
 
 /**
  * Проверяет закрытие окна без совершения изменений
+ *
+ * @group desktop
+ * @group mobile
  */
 class CloseWindowCest
 {

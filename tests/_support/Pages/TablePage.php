@@ -214,12 +214,12 @@ class TablePage extends BasePage
         }
     }
 
-    public function sortByNameDesktop(): void
+    public function sortByName(): void
     {
         $this->user->clickTo(static::HEADER_NAME);
     }
 
-    public function sortByPriorityDesktop(): void
+    public function sortByPriority(): void
     {
         $this->user->clickTo(static::HEADER_PRIORITY);
     }

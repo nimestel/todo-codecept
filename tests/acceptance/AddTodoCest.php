@@ -8,6 +8,9 @@ use Pages\TodoCard;
 
 /**
  * Проверяет добавление todo
+ *
+ * @group desktop
+ * @group mobile
  */
 class AddTodoCest
 {

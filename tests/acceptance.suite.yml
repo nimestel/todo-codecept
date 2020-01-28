@@ -17,3 +17,24 @@ modules:
             capabilities:
                 unexpectedAlertBehaviour: "accept"
         - \Helper\Acceptance
+env:
+    chrome:
+         modules:
+            config:
+                WebDriver:
+                    browser: 'chrome'
+    firefox:
+         modules:
+            config:
+                WebDriver:
+                    browser: 'firefox'
+    desktop:
+         modules:
+            config:
+                WebDriver:
+                    window_size: 1366x768
+    mobile:
+         modules:
+            config:
+                WebDriver:
+                    window_size: 360x640

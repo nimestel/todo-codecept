@@ -13,7 +13,9 @@ use Pages\TablePage;
 use Pages\TodoCard;
 
 /**
- * Проверяет сортировку по основным полям в таблице
+ * Проверяет сортировку по основным полям в таблице в мобильной версии
+ *
+ * @group mobile
  */
 class SortByFilterMobileCest
 {
