@@ -20,12 +20,19 @@ use Models\Todo;
 class TablePage extends BasePage
 {
     public const TABLE = "//table[contains(@class, 'has-mobile-cards')]";
+    public const HEADER_NAME = "//th[normalize-space()='Todo']";
+    public const HEADER_PRIORITY = "//th[normalize-space()='Priority']";
+    public const BTN_FILTER = "//*[contains(@class, 'is-small')]";
     public const FLD_NAME = "//td[@data-label='Todo']";
     public const FLD_PRIORITY = "//td[@data-label='Priority']";
     public const FLD_EDIT = "//td[@data-label='Edit']";
     public const FLD_DELETE = "//td[@data-label='Delete']";
     public const BTN_EDIT = self::FLD_EDIT . "//button";
     public const BTN_DELETE = self::FLD_DELETE . "//button";
+    
+    public const MOBILE_HEADER = "//*[contains(@class, 'table-mobile-sort')]";
+    public const SELECT_FILTER = self::MOBILE_HEADER . "//select";
+    public const BTN_ASC_DESC = self::MOBILE_HEADER . "//button[contains(@class, 'is-primary')]";
 
     /**
      * Проверяет, что такая запись есть в таблице
@@ -205,5 +212,15 @@ class TablePage extends BasePage
             $title = $header . "//th[normalize-space()='" . $title . "']";
             $I->seeTo($title);
         }
+    }
+
+    public function sortByName(): void
+    {
+        $this->user->clickTo(static::HEADER_NAME);
+    }
+
+    public function sortByPriority(): void
+    {
+        $this->user->clickTo(static::HEADER_PRIORITY);
     }
 }
