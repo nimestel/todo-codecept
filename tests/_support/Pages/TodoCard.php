@@ -78,7 +78,7 @@ class TodoCard extends MainPage
             }
             switch ($field) {
                 case "name":
-                    $I->fillField(static::FLD_TITLE, $value);
+                    $I->typeText(static::FLD_TITLE, $value);
                     break;
                 case "priority":
                     $I->selectOption(static::FLD_PRIORITY, $value);

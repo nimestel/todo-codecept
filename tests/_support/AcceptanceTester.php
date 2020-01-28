@@ -12,10 +12,10 @@
  * @method void am($role)
  * @method void lookForwardTo($achieveValue)
  * @method void comment($description)
- * @method \Codeception\Lib\Friend haveFriend($name, $actorClass = NULL)
+ * @method \Codeception\Lib\Friend haveFriend($name, $actorClass = null)
  *
  * @SuppressWarnings(PHPMD)
-*/
+ */
 class AcceptanceTester extends \Codeception\Actor
 {
     use _generated\AcceptanceTesterActions;
@@ -38,5 +38,18 @@ class AcceptanceTester extends \Codeception\Actor
         $I = $this;
         $I->scrollTo($locator);
         $I->seeElement($locator);
+    }
+
+    /** Clear field and type text
+     * Method overriden because geckodriver can't clear field
+     * @param $field
+     * @param $value
+     */
+    public function typeText($field, $value): void
+    {
+        $I = $this;
+        $I->pressKey($field, array('ctrl', 'a'), \Facebook\WebDriver\WebDriverKeys::DELETE);
+        $I->pressKey($field, array('ctrl', 'a'), \Facebook\WebDriver\WebDriverKeys::DELETE);
+        $I->fillField($field, $value);
     }
 }
