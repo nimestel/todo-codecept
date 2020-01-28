@@ -27,11 +27,18 @@ class SortByFilterDesktopCest
         $MainPage->open();
     }
 
+    /**
+     * Открыть главную страницу
+     * Удалить все записи
+     * Добавить тестовые записи
+     * Проверить, что заголовки отображаются корректно
+     */
     public function beforeSuite(
         AcceptanceTester $I,
         MainPage $MainPage,
         DeletePage $DeletePage,
-        TodoCard $TodoCard
+        TodoCard $TodoCard,
+        TablePage $TablePage
     ): void {
         $I->wantTo('Добавить данные для тестов');
 
@@ -43,11 +50,11 @@ class SortByFilterDesktopCest
         $MainPage->open();
         $DeletePage->deleteAll();
         $TodoCard->addAFew($this->todos);
+        $TablePage->checkHeader();
     }
 
     /**
      * Открыть главную страницу
-     * Проверить, что заголовок таблицы отображается корректно
      * Нажать на заголовок Todo
      *
      * Записи в таблице отображаются по возрастанию имени
@@ -60,7 +67,6 @@ class SortByFilterDesktopCest
     ): void {
         $I->wantTo('Проверить сортировку todo по возрастанию имени');
 
-        $TablePage->checkHeader();
         $TablePage->sortByName();
 
         $I->expect('1) цифры по возрастанию');
@@ -76,7 +82,6 @@ class SortByFilterDesktopCest
 
     /**
      * Открыть главную страницу
-     * Проверить, что заголовок таблицы отображается корректно
      * Два раза нажать на заголовок Todo
      *
      * Записи в таблице отображаются по убыванию имени
@@ -89,7 +94,6 @@ class SortByFilterDesktopCest
     ): void {
         $I->wantTo('Проверить сортировку todo по убыванию имени');
 
-        $TablePage->checkHeader();
         $TablePage->sortByName();
         $TablePage->sortByName();
 
@@ -105,7 +109,6 @@ class SortByFilterDesktopCest
 
     /**
      * Открыть главную страницу
-     * Проверить, что заголовок таблицы отображается корректно
      * Дважды нажать на заголовок Priority
      *
      * Записи в таблице отображаются по возрастанию приоритета
@@ -118,7 +121,6 @@ class SortByFilterDesktopCest
     ): void {
         $I->wantTo('Проверить сортировку todo по возрастанию приоритета');
 
-        $TablePage->checkHeader();
         $TablePage->sortByPriority();
         $TablePage->sortByPriority();
 
@@ -134,7 +136,6 @@ class SortByFilterDesktopCest
 
     /**
      * Открыть главную страницу
-     * Проверить, что заголовок таблицы отображается корректно
      * Нажать на заголовок Priority
      *
      * Записи в таблице отображаются по убыванию приоритета
@@ -147,7 +148,6 @@ class SortByFilterDesktopCest
     ): void {
         $I->wantTo('Проверить сортировку todo по убыванию приоритета');
 
-        $TablePage->checkHeader();
         $TablePage->sortByPriority();
 
         $I->expect('1) important');

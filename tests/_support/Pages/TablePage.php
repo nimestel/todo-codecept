@@ -214,6 +214,29 @@ class TablePage extends BasePage
         }
     }
 
+    /**
+     * Проверяет, что в таблице правильно отображаются заголовки
+     */
+    public function checkCellMobile(): void
+    {
+        $cell = static::TABLE . "//tr";
+        $titles = [
+            'ID',
+            'Todo',
+            'Priority',
+            'Edit',
+            'Delete'
+        ];
+
+        foreach ($titles as $title){
+
+            $I = $this->user;
+
+            $title = $cell . "//td[@data-label='" . $title . "']";
+            $I->seeTo($title);
+        }
+    }
+
     public function sortByName(): void
     {
         $this->user->clickTo(static::HEADER_NAME);

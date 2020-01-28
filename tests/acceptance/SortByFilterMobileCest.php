@@ -27,11 +27,18 @@ class SortByFilterMobileCest
         $MainPage->open();
     }
 
+    /**
+     * Открыть главную страницу
+     * Удалить все записи
+     * Добавить тестовые записи
+     * Проверить, что заголовки отображаются корректно
+     */
     public function beforeSuite(
         AcceptanceTester $I,
         MainPage $MainPage,
         DeletePage $DeletePage,
-        TodoCard $TodoCard
+        TodoCard $TodoCard,
+        TablePage $TablePage
     ): void {
         $I->wantTo('Добавить данные для тестов');
 
@@ -43,11 +50,11 @@ class SortByFilterMobileCest
         $MainPage->open();
         $DeletePage->deleteAll();
         $TodoCard->addAFew($this->todos);
+        $TablePage->checkCellMobile();
     }
 
     /**
      * Открыть главную страницу
-     * Проверить, что заголовок таблицы отображается корректно
      * Выбрать сортировку по Todo
      *
      * Записи в таблице отображаются по возрастанию имени
@@ -60,7 +67,6 @@ class SortByFilterMobileCest
     ): void {
         $I->wantTo('Проверить сортировку todo по возрастанию имени');
 
-        $TablePage->checkHeader();
         $TablePage->sortByNameMobile();
 
         $I->expect('1) цифры по возрастанию');
@@ -76,7 +82,6 @@ class SortByFilterMobileCest
 
     /**
      * Открыть главную страницу
-     * Проверить, что заголовок таблицы отображается корректно
      * Выбрать сортировку по Todo
      * Нажать на кнопку типа сортировки "по убыванию"
      *
@@ -90,7 +95,6 @@ class SortByFilterMobileCest
     ): void {
         $I->wantTo('Проверить сортировку todo по убыванию имени');
 
-        $TablePage->checkHeader();
         $TablePage->sortByNameMobile();
         $TablePage->sortByDescMobile();
 
@@ -106,7 +110,6 @@ class SortByFilterMobileCest
 
     /**
      * Открыть главную страницу
-     * Проверить, что заголовок таблицы отображается корректно
      * Выбрать сортировку по Priority
      * Нажать на кнопку типа сортировки "по убыванию"
      * Нажать на кнопку типа сортировки "по возрастанию"
@@ -121,7 +124,6 @@ class SortByFilterMobileCest
     ): void {
         $I->wantTo('Проверить сортировку todo по возрастанию приоритета');
 
-        $TablePage->checkHeader();
         $TablePage->sortByPriorityMobile();
         $TablePage->sortByDescMobile();
         $TablePage->sortByAscMobile();
@@ -138,7 +140,6 @@ class SortByFilterMobileCest
 
     /**
      * Открыть главную страницу
-     * Проверить, что заголовок таблицы отображается корректно
      * Выбрать сортировку по Priority
      * Нажать на кнопку типа сортировки "по убыванию"
      *
@@ -152,7 +153,6 @@ class SortByFilterMobileCest
     ): void {
         $I->wantTo('Проверить сортировку todo по убыванию приоритета');
 
-        $TablePage->checkHeader();
         $TablePage->sortByPriorityMobile();
         $TablePage->sortByDescMobile();
 
