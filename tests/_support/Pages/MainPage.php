@@ -48,8 +48,7 @@ class MainPage extends BasePage
     {
         $I = $this->user;
         $this->checkElements();
-        $I->seeElement(TablePage::BTN_ASC_DESC);
-        $I->seeElement(TablePage::TABLE);
+        $I->waitForElementVisible(TablePage::TABLE);
     }
 
     /**
