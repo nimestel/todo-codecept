@@ -22,6 +22,9 @@ class DeletePage extends BasePage
     public const BTN_DELETE = self::WINDOW . 'button.is-danger';
     public const BTN_CANCEL = self::WINDOW . 'button:not(.is-danger)';
 
+    /**
+     * Удалить все todo
+     */
     public function deleteAll(): void
     {
         $I = $this->user;
@@ -30,6 +33,10 @@ class DeletePage extends BasePage
         $this->accept();
     }
 
+    /**
+     * Удалить конкретное todo
+     * @param Todo $model
+     */
     public function delete(Todo $model): void
     {
         $I = $this->user;
@@ -38,6 +45,9 @@ class DeletePage extends BasePage
         $this->accept();
     }
 
+    /**
+     * Нажать на кнопку подтверждения удаления
+     */
     public function accept(): void
     {
         $I = $this->user;
@@ -45,6 +55,9 @@ class DeletePage extends BasePage
         $I->waitForElementNotVisible(static::WINDOW);
     }
 
+    /**
+     * Нажать на кнопку отмены удаления
+     */
     public function cancel(): void
     {
         $I = $this->user;

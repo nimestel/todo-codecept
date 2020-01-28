@@ -13,11 +13,13 @@ class Todo extends BaseModel
     /** Данные для тестов на добавление */
     public const ADD_WITH_NAME_AND_PRIORITY = 'addNamePriority';
     public const ADD_WITH_SAME_NAME_NO_PRIORITY = 'addSameName';
+
     /** Данные для тестов на изменение */
     public const ADD_FOR_EDIT = 'addForEdit';
     public const EDIT_NAME_AND_PRIORITY = 'editNameAndPriority';
     public const EDIT_PRIORITY = 'editPriority';
     public const EDIT_NAME = 'editNameInFullTodo';
+
     /** Данные для тестов на сортировку */
     public const ADD_FOR_SORT1 = 'addForSort1';
     public const ADD_FOR_SORT2 = 'addForSort2';
@@ -77,6 +79,10 @@ class Todo extends BaseModel
         return $this;
     }
 
+    /**
+     * Присваивает полю имя случайно сгенерированное значение из определенного диапазона
+     * @param int $length
+     */
     public function setRandomName(int $length = 10): void
     {
         $this->name = $this->generateRandomString($length);

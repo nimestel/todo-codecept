@@ -237,26 +237,41 @@ class TablePage extends BasePage
         }
     }
 
+    /**
+     * Сортирует значения в таблице по названию
+     */
     public function sortByName(): void
     {
         $this->user->clickTo(static::HEADER_NAME);
     }
 
+    /**
+     * Сортирует значения в таблице по приоритету
+     */
     public function sortByPriority(): void
     {
         $this->user->clickTo(static::HEADER_PRIORITY);
     }
 
+    /**
+     * Выбирает сортировку значений в таблице по названию
+     */
     public function sortByNameMobile(): void
     {
         $this->user->selectOption(static::SELECT_FILTER, 'Todo');
     }
 
+    /**
+     * Выбирает сортировку значений в таблице по приоритету
+     */
     public function sortByPriorityMobile(): void
     {
         $this->user->selectOption(static::SELECT_FILTER, 'Priority');
     }
 
+    /**
+     * Выбирает сортировку значений в таблице по возрастанию
+     */
     public function sortByAscMobile(): void
     {
         $this->user->clickTo(
@@ -265,6 +280,9 @@ class TablePage extends BasePage
         );
     }
 
+    /**
+     * Выбирает сортировку значений в таблице по убыванию
+     */
     public function sortByDescMobile(): void
     {
         $this->user->clickTo(

@@ -25,6 +25,10 @@ class TodoCard extends MainPage
     public const BTN_SAVE = self::CARD . "//button[contains(@class,'is-primary')]";
     public const BTN_CLOSE_LARGE = 'button.modal-close.is-large';
 
+    /**
+     * Добавить todo
+     * @param Todo $model
+     */
     public function add(Todo $model): void
     {
         $I = $this->user;
@@ -34,6 +38,10 @@ class TodoCard extends MainPage
         $this->save();
     }
 
+    /**
+     * Добавить несколько todo
+     * @param array $models
+     */
     public function addAFew(array $models): void
     {
         foreach ($models as $model) {
@@ -45,6 +53,11 @@ class TodoCard extends MainPage
         }
     }
 
+    /**
+     * Изменить todo
+     * @param Todo $modelBefore
+     * @param Todo $modelAfter
+     */
     public function edit(Todo $modelBefore, Todo $modelAfter): void
     {
         $I = $this->user;
@@ -54,6 +67,9 @@ class TodoCard extends MainPage
         $this->save();
     }
 
+    /**
+     * Нажать на кнопку сохранения
+     */
     public function save(): void
     {
         $I = $this->user;
@@ -61,6 +77,9 @@ class TodoCard extends MainPage
         $I->waitForElementNotVisible(static::CARD);
     }
 
+    /**
+     * Нажать на кнопку отмены
+     */
     public function close(): void
     {
         $I = $this->user;
@@ -68,6 +87,10 @@ class TodoCard extends MainPage
         $I->waitForElementNotVisible(static::CARD);
     }
 
+    /**
+     * Заполнить поля карточки todo
+     * @param Todo $model
+     */
     public function fillFields(Todo $model): void
     {
         $I = $this->user;

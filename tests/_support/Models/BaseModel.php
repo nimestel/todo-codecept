@@ -19,14 +19,18 @@ class BaseModel
 
     public function __construct($jsonBlock = null)
     {
-        if (!$jsonBlock){
+        if (!$jsonBlock) {
             return;
         }
 
         $this->set($jsonBlock);
     }
 
-    protected function set($jsonBlock)
+    /**
+     * Присваивает полям модели значения из json-файла
+     * @param $jsonBlock
+     */
+    protected function set($jsonBlock): void
     {
         $this->data = $this->getData($this->file);
         $this->initModel($this->data[$jsonBlock]);
@@ -74,5 +78,4 @@ class BaseModel
         return trim(substr(str_shuffle(str_repeat($chars,
             ceil($length / strlen($chars)))), 1, $length));
     }
-
 }
