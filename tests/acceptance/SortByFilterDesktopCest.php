@@ -125,11 +125,11 @@ class SortByFilterDesktopCest
         $TablePage->sortByPriority();
 
         $I->expect('1) meh');
-        $TablePage->seeRowNumberIs($this->todos[0], 1);
+        $TablePage->seeRowNumberIs($this->todos[2], 1);
         $I->expect('2) secondary');
         $TablePage->seeRowNumberIs($this->todos[1], 2);
         $I->expect('3) important');
-        $TablePage->seeRowNumberIs($this->todos[2], 3);
+        $TablePage->seeRowNumberIs($this->todos[0], 3);
         $I->expect('4) без приоритета');
         $TablePage->seeRowNumberIs($this->todos[3], 4);
     }
